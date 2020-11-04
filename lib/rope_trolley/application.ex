@@ -9,14 +9,15 @@ defmodule RopeTrolley.Application do
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: RopeTrolley.Supervisor]
+    t = target()
 
     children =
       [
         # Children for all targets
         # Starts a worker by calling: RopeTrolley.Worker.start_link(arg)
         # {RopeTrolley.Worker, arg},
-      ] ++ children(target())
-
+      ] ++ children(t)
+    on_start(t)
     Supervisor.start_link(children, opts)
   end
 
@@ -35,6 +36,13 @@ defmodule RopeTrolley.Application do
       # Starts a worker by calling: RopeTrolley.Worker.start_link(arg)
       # {RopeTrolley.Worker, arg},
     ]
+  end
+
+  def on_start(:host) do
+  end
+
+  def on_start(_) do
+    VintageNetWizard.run_wizard()
   end
 
   def target() do

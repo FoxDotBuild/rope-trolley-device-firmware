@@ -35,6 +35,7 @@ defmodule RopeTrolley.MixProject do
       {:shoehorn, "~> 0.7.0"},
       {:ring_logger, "~> 0.8.1"},
       {:toolshed, "~> 0.2.13"},
+      {:nerves_ssh, "~> 0.1.0", targets: @all_targets},
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.11.3", targets: @all_targets},
@@ -45,6 +46,8 @@ defmodule RopeTrolley.MixProject do
       {:vintage_net_wizard, "~> 0.4",   targets: @all_targets, override: true},
       {:circuits_gpio,      "~> 0.4.6", targets: @all_targets},
       {:circuits_i2c,       "~> 0.3.6", targets: @all_targets},
+      {:pca9641,            "~> 1.0.0", targets: @all_targets},
+      {:tortoise,           "~> 0.9.5"}
     ]
   end
 

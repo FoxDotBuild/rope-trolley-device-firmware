@@ -23,14 +23,10 @@ defmodule RopeTrolley.Application do
 
   # List all child processes to be supervised
   def children(:host) do
-    [
-      # Children that only run on the host
-      # Starts a worker by calling: RopeTrolley.Worker.start_link(arg)
-      # {RopeTrolley.Worker, arg},
-    ]
+    []
   end
 
-  def children(_target) do
+  def children(:rpi3) do
     [
       # Children for all targets except host
       # Starts a worker by calling: RopeTrolley.Worker.start_link(arg)

@@ -27,11 +27,7 @@ defmodule RopeTrolley.Application do
   end
 
   def children(:rpi3) do
-    [
-      # Children for all targets except host
-      # Starts a worker by calling: RopeTrolley.Worker.start_link(arg)
-      # {RopeTrolley.Worker, arg},
-    ]
+    [ ]
   end
 
   def on_start(:host) do

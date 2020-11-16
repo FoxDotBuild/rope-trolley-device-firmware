@@ -4,6 +4,12 @@ Device firmware for the [Nerves Trolley](https://github.com/FoxDotBuild/RopeTrol
 
 Built with [Nerves](https://www.nerves-project.org/).
 
+## TODO
+
+ - [ ] Motor speed control
+ - [ ] Peripheral control
+ - [ ] Webcam stuff
+
 ## Targets
 
 Nerves applications produce images for hardware targets based on the

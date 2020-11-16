@@ -44,9 +44,9 @@ if keys == [],
     See your project's config.exs for this error message.
     """)
 
-    config :nerves_ssh,
+config :nerves_ssh,
   authorized_keys: Enum.map(keys, &File.read!/1),
-  user_passwords: [ {"foxbuild", "jklol"} ]
+  user_passwords: [{"foxbuild", "jklol"}]
 
 # Configure the network using vintage_net
 # See https://github.com/nerves-networking/vintage_net for more information
@@ -100,5 +100,6 @@ config :mdns_lite,
 
 # import_config "#{Mix.target()}.exs"
 
-config :pca9685,
-        devices: [%{bus: "i2c-1", address: 0x40, pwm_freq: 60}]
+config :pca9685, devices: [
+  %{bus: "i2c-1", address: 0x40, pwm_freq: 60}
+]

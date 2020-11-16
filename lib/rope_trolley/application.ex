@@ -17,6 +17,7 @@ defmodule RopeTrolley.Application do
         # Starts a worker by calling: RopeTrolley.Worker.start_link(arg)
         # {RopeTrolley.Worker, arg},
       ] ++ children(t)
+
     on_start(t)
     Supervisor.start_link(children, opts)
   end
@@ -27,7 +28,7 @@ defmodule RopeTrolley.Application do
   end
 
   def children(:rpi3) do
-    [ ]
+    []
   end
 
   def on_start(:host) do

@@ -10,16 +10,17 @@ defmodule RopeTrolley.Motor do
 
   defstruct channel_a: 8, channel_b: 7
 
-  @min_sped 1325
-  @max_sped 4095
+  @min_speed 1325
+  @max_speed 4095
   @i_have_no_idea 0
   @device PCA9685.Device
-  @channel 8
+  @channel_a 8
+  @channel_b 7
   @bus "i2c-1"
   @address 0x40
 
   @doc "Creates a new motor object."
-  def new(chan_a \\ 8, chan_b \\ 9) do
+  def new(chan_a \\ @channel_a, chan_b \\ @channel_b) do
     %__MODULE__{channel_a: chan_a, channel_b: chan_b}
   end
 
@@ -37,7 +38,7 @@ defmodule RopeTrolley.Motor do
 
   defp to_freq(pct) do
     float = pct / 100
-    range = @min_sped - @max_sped
+    range = @min_speed - @max_speed
     scaled_max = float * range
     @min_speed + scaled_max
   end

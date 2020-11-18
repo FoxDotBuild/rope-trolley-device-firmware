@@ -100,6 +100,7 @@ config :mdns_lite,
 
 # import_config "#{Mix.target()}.exs"
 
-config :pca9685, devices: [
-  %{bus: "i2c-1", address: 0x40, pwm_freq: 60}
-]
+config :pca9685,
+  devices: [
+    %{bus: "i2c-1", address: 0x40, pwm_freq: 60}
+  ]

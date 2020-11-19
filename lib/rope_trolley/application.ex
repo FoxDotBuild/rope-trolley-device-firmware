@@ -11,25 +11,7 @@ defmodule RopeTrolley.Application do
     opts = [strategy: :one_for_one, name: RopeTrolley.Supervisor]
     t = target()
 
-    children =
-      [
-        %{
-          id: Tortoise.Connection,
-          start:
-            {Tortoise.Connection, :start_link,
-             [
-               [
-                 client_id: "WOW!",
-                 server: {Tortoise.Transport.Tcp, host: "test.mosquitto.org", port: 1883},
-                 handler: {RopeTrolley.MQTTHandler, []},
-                 subscriptions: [{"foo/+/bar", 0}]
-               ]
-             ]},
-          shutdown: 5_000,
-          restart: :permanent,
-          type: :worker
-        }
-      ] ++ children(t)
+    children = [mqtt_config()] ++ children(t)
 
     on_start(t)
     Supervisor.start_link(children, opts)
@@ -44,14 +26,30 @@ defmodule RopeTrolley.Application do
     []
   end
 
-  def on_start(:host) do
-  end
-
-  def on_start(_) do
-    VintageNetWizard.run_wizard()
+  def on_start(_target) do
+    Application.fetch_env!(:rope_trolley, :wifi_wizard).run_wizard()
   end
 
   def target() do
     Application.get_env(:rope_trolley, :target)
+  end
+
+  def mqtt_config do
+    %{
+      id: Tortoise.Connection,
+      start:
+        {Tortoise.Connection, :start_link,
+         [
+           [
+             client_id: "WOW!",
+             server: {Tortoise.Transport.Tcp, host: "test.mosquitto.org", port: 1883},
+             handler: {RopeTrolley.MQTTHandler, []},
+             subscriptions: [{"foo/+/bar", 0}]
+           ]
+         ]},
+      shutdown: 5_000,
+      restart: :permanent,
+      type: :worker
+    }
   end
 end

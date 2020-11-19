@@ -20,7 +20,7 @@ config :nerves_runtime, :kernel, use_system_registry: false
 
 config :nerves,
   erlinit: [
-    hostname_pattern: "nerves-%s"
+    hostname_pattern: "rope-trolley-%s"
   ]
 
 # Configure the device for SSH IEx prompt access and firmware updates
@@ -46,7 +46,7 @@ if keys == [],
 
 config :nerves_ssh,
   authorized_keys: Enum.map(keys, &File.read!/1),
-  user_passwords: [{"foxbuild", "jklol"}]
+  user_passwords: []
 
 # Configure the network using vintage_net
 # See https://github.com/nerves-networking/vintage_net for more information
@@ -104,3 +104,6 @@ config :pca9685,
   devices: [
     %{bus: "i2c-1", address: 0x40, pwm_freq: 60}
   ]
+
+config :rope_trolley, pca9685_device: PCA9685.Device
+config :rope_trolley, wifi_wizard: VintageNetWizard

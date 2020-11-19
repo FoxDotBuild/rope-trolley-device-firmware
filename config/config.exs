@@ -26,6 +26,9 @@ config :nerves, source_date_epoch: "1604490356"
 
 config :logger, backends: [RingLogger]
 
+config :rope_trolley, pca9685_device: RopeTrolley.StubPCA9685
+config :rope_trolley, wifi_wizard: RopeTrolley.StubWifi
+
 if Mix.target() != :host do
   import_config "target.exs"
 end

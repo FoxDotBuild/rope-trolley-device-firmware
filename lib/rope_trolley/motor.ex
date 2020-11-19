@@ -13,7 +13,7 @@ defmodule RopeTrolley.Motor do
   @min_speed 1325
   @max_speed 4095
   @i_have_no_idea 0
-  @device PCA9685.Device
+  @device Application.fetch_env!(:rope_trolley, :pca9685_device)
   @channel_a 8
   @channel_b 9
   @bus "i2c-1"

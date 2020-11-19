@@ -6,9 +6,10 @@ Built with [Nerves](https://www.nerves-project.org/).
 
 ## TODO
 
- - [ ] Motor speed control
- - [ ] Peripheral control
- - [ ] Webcam stuff
+ - [x] Motor speed control
+ - [ ] MQTT / Remote control stuff
+ - [ ] (postponed?) Webcam stuff
+ - [ ] (postponed?) Peripheral control
 
 ## Targets
 

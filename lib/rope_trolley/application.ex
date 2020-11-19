@@ -13,9 +13,22 @@ defmodule RopeTrolley.Application do
 
     children =
       [
-        # Children for all targets
-        # Starts a worker by calling: RopeTrolley.Worker.start_link(arg)
-        # {RopeTrolley.Worker, arg},
+        %{
+          id: Tortoise.Connection,
+          start:
+            {Tortoise.Connection, :start_link,
+             [
+               [
+                 client_id: "WOW!",
+                 server: {Tortoise.Transport.Tcp, host: "test.mosquitto.org", port: 1883},
+                 handler: {RopeTrolley.MQTTHandler, []},
+                 subscriptions: [{"foo/+/bar", 0}]
+               ]
+             ]},
+          shutdown: 5_000,
+          restart: :permanent,
+          type: :worker
+        }
       ] ++ children(t)
 
     on_start(t)

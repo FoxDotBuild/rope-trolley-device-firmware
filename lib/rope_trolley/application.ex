@@ -44,7 +44,7 @@ defmodule RopeTrolley.Application do
              client_id: "WOW!",
              server: {Tortoise.Transport.Tcp, host: "test.mosquitto.org", port: 1883},
              handler: {RopeTrolley.MQTTHandler, []},
-             subscriptions: [{"foo/+/bar", 0}]
+             subscriptions: [{"rope_trolley/#", 0}]
            ]
          ]},
       shutdown: 5_000,

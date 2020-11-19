@@ -15,6 +15,16 @@ defmodule RopeTrolley.MQTTHandler do
     {:ok, state}
   end
 
+  def handle_message(["rope_trolley", "cw", speed, ms], _payload, state) do
+    IO.puts("Move clockwise #{speed}% speed for #{ms}")
+    {:ok, state}
+  end
+
+  def handle_message(["rope_trolley", "ccw", speed, ms], _payload, state) do
+    IO.puts("Move counter clockwise #{speed}% speed for #{ms}")
+    {:ok, state}
+  end
+
   def handle_message(topic, payload, state) do
     IO.puts("UNHANDLED MESSAGE: #{inspect(topic)} - #{inspect(payload)}")
     {:ok, state}

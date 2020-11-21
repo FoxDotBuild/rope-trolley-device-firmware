@@ -41,10 +41,10 @@ defmodule RopeTrolley.Application do
         {Tortoise.Connection, :start_link,
          [
            [
-             client_id: "WOW!",
-             server: {Tortoise.Transport.Tcp, host: "test.mosquitto.org", port: 1883},
+             client_id: "rope_trolley_device_#{:random.uniform(100_000)}",
+             server: {Tortoise.Transport.Tcp, host: "localhost", port: 1883},
              handler: {RopeTrolley.MQTTHandler, []},
-             subscriptions: [{"rope_trolley/#", 0}]
+             subscriptions: [{"rope_trolley/+", 0}]
            ]
          ]},
       shutdown: 5_000,

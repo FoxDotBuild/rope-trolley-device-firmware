@@ -10,7 +10,7 @@ Built with [Nerves](https://www.nerves-project.org/).
  - [ ] MQTT / Remote control stuff
  - [ ] (postponed?) Webcam stuff
  - [ ] (postponed?) Peripheral control
-
+ - [ ] (stretch goal) add a watchdog for emergency braking.
 ## Targets
 
 Nerves applications produce images for hardware targets based on the

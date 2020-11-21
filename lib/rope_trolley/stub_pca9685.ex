@@ -3,7 +3,7 @@ defmodule RopeTrolley.StubPCA9685 do
   Stub controller for doing development in Host mode
   """
 
-  def channel(_bus, _address, _channel, _unknown, _freq) do
-    Process.sleep(100)
+  def channel(_bus, _address, channel, _unknown, freq) do
+    IO.puts("Channel #{inspect(channel)} set to #{inspect(freq)}")
   end
 end

@@ -3,10 +3,12 @@ defmodule RopeTrolley.MQTTHandler do
   require Logger
 
   def start_link(state \\ []) do
+    IO.puts("start_link")
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
   end
 
   def init(_args) do
+    IO.puts(">>>>>>>>")
     {:ok, %{}}
   end
 
@@ -15,13 +17,8 @@ defmodule RopeTrolley.MQTTHandler do
     {:ok, state}
   end
 
-  def handle_message(["rope_trolley", "cw", speed, ms], _payload, state) do
-    IO.puts("Move clockwise #{speed}% speed for #{ms}")
-    {:ok, state}
-  end
-
-  def handle_message(["rope_trolley", "ccw", speed, ms], _payload, state) do
-    IO.puts("Move counter clockwise #{speed}% speed for #{ms}")
+  def handle_message(["rope_trolley", speed], _payload, state) do
+    IO.puts("Move @ #{speed}")
     {:ok, state}
   end
 

@@ -25,18 +25,21 @@ defmodule RopeTrolley.Motor do
   end
 
   @doc "Move the motor counter-clockwise at a given speed."
-  def ccw(motor, speed_percentage) do
+  def ccw(motor, percentage) do
+    IO.puts("CCW @ #{percentage}%")
     brake(motor)
-    pwm(motor.channel_a, to_freq(speed_percentage))
+    pwm(motor.channel_a, to_freq(percentage))
   end
 
   @doc "Move the motor clockwise at a given speed."
-  def cw(motor, speed_percentage) do
+  def cw(motor, percentage) do
+    IO.puts("CW @ #{percentage}%")
     brake(motor)
-    pwm(motor.channel_b, to_freq(speed_percentage))
+    pwm(motor.channel_b, to_freq(percentage))
   end
 
   def brake(motor) do
+    IO.puts("Apply brakes")
     pwm(motor.channel_a, 0)
     pwm(motor.channel_b, 0)
   end
@@ -50,6 +53,5 @@ defmodule RopeTrolley.Motor do
 
   defp pwm(chan, freq) do
     @device.channel(@bus, @address, chan, @i_have_no_idea, freq)
-    Process.sleep(100)
   end
 end

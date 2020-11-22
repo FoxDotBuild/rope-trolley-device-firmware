@@ -35,6 +35,9 @@ defmodule RopeTrolley.Application do
   end
 
   def mqtt_config do
+    {:ok, host} = Application.fetch_env(:rope_trolley, :mqtt_host)
+    {:ok, port} = Application.fetch_env(:rope_trolley, :mqtt_port)
+
     %{
       id: Tortoise.Connection,
       start:
@@ -42,7 +45,7 @@ defmodule RopeTrolley.Application do
          [
            [
              client_id: "rope_trolley_device_#{:random.uniform(100_000)}",
-             server: {Tortoise.Transport.Tcp, host: "localhost", port: 1883},
+             server: {Tortoise.Transport.Tcp, host: host, port: port},
              handler: {RopeTrolley.MQTTHandler, []},
              subscriptions: [{"rope_trolley/+", 0}]
            ]

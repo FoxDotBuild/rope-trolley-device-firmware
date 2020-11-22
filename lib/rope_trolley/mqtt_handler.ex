@@ -3,37 +3,35 @@ defmodule RopeTrolley.MQTTHandler do
   require Logger
 
   def start_link(state \\ []) do
-    IO.puts("start_link")
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
   end
 
   def init(_args) do
-    IO.puts(">>>>>>>>")
     {:ok, %{}}
   end
 
   def connection(status, state) do
-    IO.puts("?? Connection #{status}...")
+    Logger.info("MQTT Status: #{inspect(status)}")
     {:ok, state}
   end
 
   def handle_message(["rope_trolley", speed], _payload, state) do
-    IO.puts("Move @ #{speed}")
+    Logger.info("Got message: #{inspect(speed)}")
+    RopeTrolley.MotorController.perform_movement(speed)
     {:ok, state}
   end
 
-  def handle_message(topic, payload, state) do
-    IO.puts("UNHANDLED MESSAGE: #{inspect(topic)} - #{inspect(payload)}")
+  def handle_message(topic, _payload, state) do
+    Logger.info("Getting unknown message on #{inspect(topic)}")
     {:ok, state}
   end
 
   def subscription(status, topic_filter, state) do
-    IO.puts("?? #{inspect(status)} #{inspect(topic_filter)}")
+    Logger.debug("#{inspect(topic_filter)} => #{inspect(status)}")
     {:ok, state}
   end
 
-  def terminate(reason, _state) do
-    IO.puts("EXIT === #{reason}")
+  def terminate(_reason, _state) do
     :ok
   end
 end

@@ -28,6 +28,8 @@ config :logger, backends: [RingLogger]
 
 config :rope_trolley, pca9685_device: RopeTrolley.StubPCA9685
 config :rope_trolley, wifi_wizard: RopeTrolley.StubWifi
+config :rope_trolley, mqtt_host: "10.11.1.235"
+config :rope_trolley, mqtt_port: 1883
 
 if Mix.target() != :host do
   import_config "target.exs"

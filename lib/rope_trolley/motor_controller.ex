@@ -13,7 +13,7 @@ defmodule RopeTrolley.MotorController do
   def perform_movement({cmd, ""})
       when is_integer(cmd) and
              cmd < -5,
-      do: Motor.ccw(@motor, cmd)
+      do: Motor.ccw(@motor, abs(cmd))
 
   # Move CW
   def perform_movement({cmd, ""})

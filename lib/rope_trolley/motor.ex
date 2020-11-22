@@ -19,6 +19,8 @@ defmodule RopeTrolley.Motor do
   @bus "i2c-1"
   @address 0x40
 
+  require Logger
+
   @doc "Creates a new motor object."
   def new(chan_a \\ @channel_a, chan_b \\ @channel_b) do
     %__MODULE__{channel_a: chan_a, channel_b: chan_b}
@@ -26,20 +28,20 @@ defmodule RopeTrolley.Motor do
 
   @doc "Move the motor counter-clockwise at a given speed."
   def ccw(motor, percentage) do
-    IO.puts("CCW @ #{percentage}%")
+    Logger.debug("CCW @ #{percentage}%")
     brake(motor)
     pwm(motor.channel_a, to_freq(percentage))
   end
 
   @doc "Move the motor clockwise at a given speed."
   def cw(motor, percentage) do
-    IO.puts("CW @ #{percentage}%")
+    Logger.debug("CW @ #{percentage}%")
     brake(motor)
     pwm(motor.channel_b, to_freq(percentage))
   end
 
   def brake(motor) do
-    IO.puts("Apply brakes")
+    Logger.debug("Apply brakes")
     pwm(motor.channel_a, 0)
     pwm(motor.channel_b, 0)
   end
@@ -48,7 +50,7 @@ defmodule RopeTrolley.Motor do
     float = pct / 100
     range = @max_speed - @min_speed
     scaled_max = float * range
-    abs(Kernel.trunc(@min_speed + scaled_max))
+    Kernel.trunc(@min_speed + scaled_max)
   end
 
   defp pwm(chan, freq) do

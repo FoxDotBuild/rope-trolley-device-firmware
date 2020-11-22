@@ -43,11 +43,10 @@ defmodule RopeTrolley.MixProject do
 
       # Dependencies for specific targets
       {:nerves_system_rpi3, "~> 1.13", targets: :rpi3, runtime: false},
-      {:vintage_net_wizard, "~> 0.4", targets: @all_targets, override: true},
       {:circuits_gpio, "~> 0.4.6", targets: @all_targets},
       {:circuits_i2c, "~> 0.3.6", targets: @all_targets},
       {:pca9685, git: "https://github.com/jimsynz/pca9685.ex.git"},
-      {:tortoise, "~> 0.9.5"}
+      {:tortoise, git: "https://github.com/lucaong/tortoise"}
     ]
   end
 

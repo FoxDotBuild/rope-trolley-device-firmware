@@ -24,10 +24,9 @@ config :nerves, source_date_epoch: "1604490356"
 # See https://hexdocs.pm/ring_logger/readme.html for more information on
 # configuring ring_logger.
 
-config :logger, backends: [RingLogger]
+config :logger, backends: [RingLogger, :console]
 
 config :rope_trolley, pca9685_device: RopeTrolley.StubPCA9685
-config :rope_trolley, wifi_wizard: RopeTrolley.StubWifi
 config :rope_trolley, mqtt_host: "10.11.1.235"
 config :rope_trolley, mqtt_port: 1883
 

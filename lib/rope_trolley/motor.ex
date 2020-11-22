@@ -48,7 +48,7 @@ defmodule RopeTrolley.Motor do
     float = pct / 100
     range = @max_speed - @min_speed
     scaled_max = float * range
-    Kernel.trunc(@min_speed + scaled_max)
+    abs(Kernel.trunc(@min_speed + scaled_max))
   end
 
   defp pwm(chan, freq) do

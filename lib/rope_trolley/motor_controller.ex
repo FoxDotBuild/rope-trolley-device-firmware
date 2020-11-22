@@ -22,7 +22,7 @@ defmodule RopeTrolley.MotorController do
       do: Motor.cw(@motor, cmd)
 
   # Pull the brakes
-  def perform_movement(cmd)
+  def perform_movement({cmd, ""})
       when is_integer(cmd),
       do: Motor.brake(@motor)
 

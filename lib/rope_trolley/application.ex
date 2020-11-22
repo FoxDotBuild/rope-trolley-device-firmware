@@ -27,7 +27,6 @@ defmodule RopeTrolley.Application do
   end
 
   def on_start(_target) do
-    Application.fetch_env!(:rope_trolley, :wifi_wizard).run_wizard()
   end
 
   def target() do

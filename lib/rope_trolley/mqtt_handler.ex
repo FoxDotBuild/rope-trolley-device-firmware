@@ -15,9 +15,9 @@ defmodule RopeTrolley.MQTTHandler do
     {:ok, state}
   end
 
-  def handle_message(["rope_trolley", speed], _payload, state) do
-    Logger.info("Got message: #{inspect(speed)}")
-    RopeTrolley.MotorController.perform_movement(speed)
+  def handle_message(["rope_trolley", speed], payload, state) do
+    Logger.info("Got message: #{inspect(speed)} / #{inspect(payload)}")
+    RopeTrolley.MotorController.perform_movement(payload)
     {:ok, state}
   end
 
